@@ -19,3 +19,11 @@ lazy val root = (project in file("."))
     )
   )
   .enablePlugins(JavaAppPackaging)
+  .enablePlugins(AshScriptPlugin)
+  .settings(
+    dockerBaseImage := "openjdk:8u201-jre-alpine3.9",
+    makeBatScripts := Seq(),
+    dockerUpdateLatest := true,
+    defaultLinuxInstallLocation in Docker := "/app",
+    dockerExposedPorts := Seq(8081)
+  )
