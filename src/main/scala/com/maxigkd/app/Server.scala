@@ -1,26 +1,19 @@
 package com.maxigkd.app
 
-
-import cats.data.Kleisli
-import com.maxigkd.app.route.HelloWorldRoute
 import cats.effect.{ExitCode, IO, IOApp}
 import cats.implicits._
-import org.http4s.{Request, Response}
 import org.http4s.server.blaze._
 import org.http4s.server.middleware.Logger
-import pureconfig.generic.auto._
 
 
 case class ServerConfig(host: String, port: Int)
 
-object MainApp extends IOApp {
+object MainApp extends IOApp with ApplicationContext {
   def run(args: List[String]): IO[ExitCode] = {
-    val serverConfig = pureconfig.loadConfigOrThrow[ServerConfig]("dockerized-scala-app.server-config")
-    val server = Server(serverConfig, new HelloWorldRoute().register())
-    server.run()
+       server.run()
   }
 
-  case class Server(serverConfig: ServerConfig, routes: Kleisli[IO, Request[IO], Response[IO]]) {
+  case class Server() {
     def run(): IO[ExitCode] = {
       BlazeServerBuilder[IO]
         .bindHttp(serverConfig.port, serverConfig.host)

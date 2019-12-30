@@ -8,7 +8,7 @@ import org.http4s.implicits._
 
 
 class HelloWorldRoute {
-  def register(): Kleisli[IO, Request[IO], Response[IO]] = {
+  val routes:  Kleisli[IO, Request[IO], Response[IO]] = {
     HttpRoutes.of[IO] {
       case GET -> Root / "hello" / name => get(name)
     }.orNotFound
