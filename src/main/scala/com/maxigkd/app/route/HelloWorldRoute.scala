@@ -1,4 +1,4 @@
-package com.maxigkd.app.controller
+package com.maxigkd.app.route
 
 import cats.data.Kleisli
 import cats.effect.IO
@@ -7,7 +7,7 @@ import org.http4s.dsl.io._
 import org.http4s.implicits._
 
 
-class HelloWorldController {
+class HelloWorldRoute {
   def register(): Kleisli[IO, Request[IO], Response[IO]] = {
     HttpRoutes.of[IO] {
       case GET -> Root / "hello" / name => get(name)

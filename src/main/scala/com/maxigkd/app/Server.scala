@@ -2,7 +2,7 @@ package com.maxigkd.app
 
 
 import cats.data.Kleisli
-import com.maxigkd.app.controller.HelloWorldController
+import com.maxigkd.app.route.HelloWorldRoute
 import cats.effect.{ExitCode, IO, IOApp}
 import cats.implicits._
 import org.http4s.{Request, Response}
@@ -16,7 +16,7 @@ case class ServerConfig(host: String, port: Int)
 object MainApp extends IOApp {
   def run(args: List[String]): IO[ExitCode] = {
     val serverConfig = pureconfig.loadConfigOrThrow[ServerConfig]("dockerized-scala-app.server-config")
-    val server = Server(serverConfig, new HelloWorldController().register())
+    val server = Server(serverConfig, new HelloWorldRoute().register())
     server.run()
   }
 
