@@ -1,15 +1,14 @@
 # Dockerized-scala-app
 
-A simple REST API with only one endpoint /hello/${name} that returns Hello, <name>.
+A simple REST API with only one endpoint /hello/${name} that returns Hello, .... .
 
-The objective of this project is to show how to link docker with sbt in a Scala app using sbt-native-packager.
+The purpose of this project is to show how to link docker with sbt on a Scala application using sbt-native-packager.
 
 ## Getting Started
-- git checkout master
-- sbt clean compile
-- sbt docker:publishLocal
-- run with: docker run --rm -p 8081:8081 dockerized-scala-app
-- Test in: http://localhost:8081/hello/<name>
+- Compile: sbt clean compile
+- Publish it locally: sbt docker:publishLocal
+- Run: docker run --rm -p 8081:8081 dockerized-scala-app
+- Test: http://localhost:8081/hello/<name>
 
 ### Prerequisites
 
